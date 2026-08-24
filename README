@@ -1,1 +1,1 @@
-包含WPF基础知识点，以增量形式逐个介绍。包含了基础的MVVM架构介绍，以及如何用commontoolkit把mvvm写薄
+包含WPF基础知识点，以增量形式逐个介绍。包含了基础的MVVM架构介绍，带 Model 的完整三层示例，以及如何用 CommunityToolkit.Mvvm 把 ViewModel 写薄。

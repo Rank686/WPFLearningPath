@@ -109,7 +109,9 @@ Toolkit 省的是 INPC / Command 重复代码，不是架构设计。
 ## 启动
 
 ```powershell
-dotnet run --project "LearningPath/Track06-ApplicationAndMvvm/Step38-CommunityToolkitMvvm/Step38-CommunityToolkitMvvm.csproj"
+dotnet run --project "Track06-ApplicationAndMvvm/Step39-CommunityToolkitMvvm/Step39-CommunityToolkitMvvm.csproj"
 ```
 
 建议与 `Step38-RelayCommandMvvm` 对照阅读 `MainWindowViewModel.cs`。
+
+下一步 `Step40-MvvmWithModel` 补上 Model 层（草稿 vs 已提交记录）；对照项目 `Step40-Compare-CommunityToolkitMvvm` 用 Toolkit 写同一套完整三层。

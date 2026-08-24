@@ -1,0 +1,55 @@
+<Window x:Class="WpfLearning.Step40Toolkit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Step 40 Toolkit - MVVM with Model"
+        Height="520"
+        Width="520">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22"
+                   FontWeight="SemiBold"
+                   Text="Same complete MVVM, thinner ViewModel via toolkit" />
+
+        <TextBlock Margin="0,18,0,6"
+                   FontWeight="SemiBold"
+                   Text="Draft (ViewModel)" />
+        <TextBlock Margin="0,0,0,5"
+                   Text="Name" />
+        <TextBox Width="280"
+                 HorizontalAlignment="Left"
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Margin="0,12,0,5"
+                   Text="Score (0–100)" />
+        <TextBox Width="120"
+                 HorizontalAlignment="Left"
+                 Text="{Binding Score, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Margin="0,10,0,0"
+                   Text="{Binding PassingPreview}" />
+
+        <TextBlock Margin="0,20,0,6"
+                   FontWeight="SemiBold"
+                   Text="Committed record (Model)" />
+        <TextBlock FontSize="16"
+                   Text="{Binding CommittedSummary}" />
+
+        <StackPanel Margin="0,18,0,0"
+                    Orientation="Horizontal">
+            <Button Width="120"
+                    Padding="10,6"
+                    Background="{StaticResource AppAccentBrush}"
+                    Foreground="White"
+                    Content="Save"
+                    Command="{Binding SaveCommand}" />
+            <Button Width="120"
+                    Margin="12,0,0,0"
+                    Padding="10,6"
+                    Content="Reset"
+                    Command="{Binding ResetCommand}" />
+        </StackPanel>
+        <TextBlock Margin="0,12,0,0"
+                   Text="{Binding StatusMessage}" />
+
+        <TextBlock Margin="0,18,0,0"
+                   TextWrapping="Wrap"
+                   Text="Learner.cs is the same idea as the handwritten step. Compare MainWindowViewModel.cs — toolkit does not replace the Model layer." />
+    </StackPanel>
+</Window>

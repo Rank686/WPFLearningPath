@@ -56,4 +56,4 @@ RoutedCommand、CommandBinding、CommandParameter、异步命令、依赖注入�
 
 现在可以打开仓库内的 CustomComboBox 综合示例，并回看本轨列出的 Application 原版综合示例。
 
-对照阅读：`Step38-CommunityToolkitMvvm`（同一界面，用 CommunityToolkit.Mvvm 写薄的 ViewModel 样板）。
+对照阅读：`Step39-CommunityToolkitMvvm`（同一界面，用 CommunityToolkit.Mvvm 写薄的 ViewModel 样板）。下一步 `Step40-MvvmWithModel` 会补上独立的 Model 层。
