@@ -1,0 +1,62 @@
+<Window x:Class="WpfLearning.Step26.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step26"
+        Title="Step 26 - ItemBindingGroup"
+        Width="760"
+        Height="480">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22" FontWeight="SemiBold" Text="Each row owns an independent BindingGroup" />
+        <TextBlock Margin="0,8,0,18" TextWrapping="Wrap"
+                   Text="Make row 1 invalid, then save row 2. One row's proposed values do not block another row." />
+
+        <StackPanel Margin="10,0,0,6" Orientation="Horizontal">
+            <TextBlock Width="190" FontWeight="SemiBold" Text="Start price" />
+            <TextBlock Width="190" FontWeight="SemiBold" Text="Buy-now price" />
+            <TextBlock Width="120" FontWeight="SemiBold" Text="This row" />
+        </StackPanel>
+
+        <ItemsControl x:Name="OfferItems" ItemsSource="{Binding Offers}">
+            <ItemsControl.ItemBindingGroup>
+                <BindingGroup>
+                    <BindingGroup.ValidationRules>
+                        <local:PriceOrderRule ValidationStep="ConvertedProposedValue" />
+                    </BindingGroup.ValidationRules>
+                </BindingGroup>
+            </ItemsControl.ItemBindingGroup>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,0,0,10" Padding="10" BorderBrush="LightGray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="180" Margin="0,0,12,0">
+                                <TextBox.Text>
+                                    <Binding Path="StartPrice" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <local:PriceRule ValidationStep="RawProposedValue" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <TextBox Width="180" Margin="0,0,12,0">
+                                <TextBox.Text>
+                                    <Binding Path="BuyNowPrice" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <local:PriceRule ValidationStep="RawProposedValue" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <Button Width="120" Padding="10,4" Content="Save Row" Click="SaveRow_Click" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock x:Name="StatusText" Margin="0,10,0,0" FontWeight="SemiBold"
+                   Text="No row commit attempted" />
+    </StackPanel>
+</Window>

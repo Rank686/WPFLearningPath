@@ -1,0 +1,17 @@
+<Window x:Class="WpfLearning.Step03.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Step 03 - XAML Click"
+        Width="420"
+        Height="260">
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <TextBlock Text="The Click attribute names a C# method."
+                   FontSize="20"
+                   Margin="0,0,0,16" />
+        <Button Content="Click me"
+                Width="180"
+                Click="ChangeText_Click" />
+    </StackPanel>
+</Window>

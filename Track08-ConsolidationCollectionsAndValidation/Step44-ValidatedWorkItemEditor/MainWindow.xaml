@@ -1,0 +1,100 @@
+<Window x:Class="WpfLearning.Step44.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step44"
+        Title="可校验工作项编辑器" Height="680" Width="1040">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationErrorTemplate">
+            <StackPanel Orientation="Horizontal">
+                <AdornedElementPlaceholder/>
+                <TextBlock Text="!" Foreground="Red" FontWeight="Bold" Margin="4,0,0,0"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
+    <StackPanel Margin="24">
+        <TextBlock Text="可校验工作项编辑器" FontSize="26" Margin="0,0,0,16"/>
+        <WrapPanel Margin="0,0,0,12">
+            <Button x:Name="AddButton" Content="Add" Click="Add_Click" Padding="10,6" Margin="0,0,8,0"/>
+            <Button x:Name="UpdateButton" Content="Update" Click="Update_Click" Padding="10,6" Margin="0,0,8,0"/>
+            <Button x:Name="DeleteButton" Content="Delete" Padding="10,6" Margin="0,0,8,0"/>
+            <Button x:Name="SortButton" Content="Sort" Click="Sort_Click" Padding="10,6" Margin="0,0,8,0"/>
+            <Button x:Name="GroupButton" Content="Group" Click="Group_Click" Padding="10,6" Margin="0,0,8,0"/>
+            <CheckBox x:Name="OpenOnlyCheckBox" Content="Open only" Click="Filter_Click" VerticalAlignment="Center" Margin="0,0,12,0"/>
+            <Button x:Name="BeginNewButton" Content="Begin New" Click="BeginNew_Click" Padding="10,6"/>
+        </WrapPanel>
+        <TextBlock x:Name="EditStatus" Foreground="Red" MinHeight="22" Margin="0,0,0,8"/>
+        <ListBox x:Name="WorkItemList"
+                 ItemsSource="{Binding ItemsView}"
+                 IsSynchronizedWithCurrentItem="True"
+                 MinHeight="340">
+            <ListBox.ItemBindingGroup>
+                <BindingGroup>
+                    <BindingGroup.ValidationRules>
+                        <local:ProgressRule ValidationStep="ConvertedProposedValue"/>
+                    </BindingGroup.ValidationRules>
+                </BindingGroup>
+            </ListBox.ItemBindingGroup>
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="4,10,4,4"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBox x:Name="TitleEditor" Width="210" Margin="0,0,10,0"
+                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="Title" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local:RequiredTextRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBox x:Name="EstimateEditor" Width="75" Margin="0,0,10,0"
+                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="Estimate" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local:NonNegativeIntegerRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBox x:Name="CompletedEditor" Width="75" Margin="0,0,10,0"
+                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="Completed" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local:NonNegativeIntegerRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBlock Text="{Binding Category}" Width="120" VerticalAlignment="Center"/>
+                        <CheckBox Content="Done" IsChecked="{Binding IsDone}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <Button Content="Save" Click="SaveRow_Click" Padding="10,4" Margin="0,0,6,0"/>
+                        <Button Content="Cancel" Click="CancelRow_Click" Padding="10,4"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Text="Current item" FontWeight="Bold" Margin="0,16,0,6"/>
+        <ContentControl x:Name="CurrentItemDetail" Content="{Binding Path=ItemsView/}">
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" FontSize="18" Margin="0,0,16,0"/>
+                        <TextBlock Text="{Binding Estimate, StringFormat=Estimate: {0}}" Margin="0,0,16,0"/>
+                        <TextBlock Text="{Binding Completed, StringFormat=Completed: {0}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+    </StackPanel>
+</Window>

@@ -1,0 +1,34 @@
+<Window x:Class="WpfLearning.Step18.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Step 18 - CollectionView CurrentItem"
+        Width="560"
+        Height="440">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22"
+                   FontWeight="SemiBold"
+                   Text="One collection view, one current-item pointer" />
+        <TextBlock Margin="0,8,0,16"
+                   Text="Phase A: ItemsControl displays ItemsView. Phase B: buttons move its current item." />
+
+        <ItemsControl ItemsSource="{Binding ItemsView}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,0,0,6" Padding="8" BorderBrush="LightGray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="190" FontWeight="SemiBold" Text="{Binding Title}" />
+                            <TextBlock Width="120" Text="{Binding Category}" />
+                            <CheckBox Content="Active" IsChecked="{Binding IsActive}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StackPanel Orientation="Horizontal" Margin="0,14,0,10">
+            <Button Padding="14,6" Margin="0,0,8,0" Content="Previous" Click="Previous_Click" />
+            <Button Padding="14,6" Content="Next" Click="Next_Click" />
+        </StackPanel>
+        <TextBlock x:Name="CurrentItemText" FontWeight="SemiBold" />
+    </StackPanel>
+</Window>

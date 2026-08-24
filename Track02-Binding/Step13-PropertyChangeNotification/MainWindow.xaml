@@ -1,0 +1,26 @@
+<Window x:Class="WpfLearning.Step13.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step13"
+        Title="Step 13 - Property Change Notification"
+        Width="500"
+        Height="300">
+    <StackPanel x:Name="RootPanel"
+                Margin="32"
+                VerticalAlignment="Center">
+        <StackPanel.DataContext>
+            <local:Profile DisplayName="Ada Lovelace" />
+        </StackPanel.DataContext>
+
+        <TextBlock Text="The button changes only the source object"
+                   FontSize="19"
+                   Margin="0,0,0,14" />
+        <TextBlock Text="{Binding DisplayName, Mode=OneWay}"
+                   FontSize="26"
+                   Margin="0,0,0,18" />
+        <Button Content="Change source property"
+                Width="200"
+                HorizontalAlignment="Left"
+                Click="ChangeSource_Click" />
+    </StackPanel>
+</Window>

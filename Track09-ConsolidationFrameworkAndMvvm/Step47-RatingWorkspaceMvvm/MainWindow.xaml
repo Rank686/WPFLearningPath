@@ -1,0 +1,62 @@
+<Window x:Class="WpfLearning.Step47.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step47"
+        Title="Step 47 - Rating Workspace MVVM" Height="600" Width="560">
+    <Window.Resources>
+        <Style x:Key="BaseRatingStyle" TargetType="{x:Type local:RatingBadge}">
+            <Setter Property="Background" Value="LightSkyBlue" />
+            <Setter Property="BorderBrush" Value="SteelBlue" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Padding" Value="20,12" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:RatingBadge}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Content="{TemplateBinding Content}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HighlightedRatingStyle"
+               TargetType="{x:Type local:RatingBadge}"
+               BasedOn="{StaticResource BaseRatingStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=HighlightCheckBox, Path=IsChecked}" Value="True">
+                    <Setter Property="Background" Value="LightGoldenrodYellow" />
+                    <Setter Property="BorderBrush" Value="DarkGoldenrod" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22" FontWeight="SemiBold" Text="MVVM rating workspace" />
+        <TextBlock Margin="0,10,0,14" TextWrapping="Wrap"
+                   Text="Slider, RatingBadge, routed controls, and SaveCommand share one ViewModel Rating." />
+        <Slider x:Name="RatingSlider" Width="260" HorizontalAlignment="Left"
+                Minimum="0" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"
+                Value="{Binding Rating, Mode=TwoWay}" />
+        <local:RatingBadge x:Name="RatingBadge" Margin="0,14,0,0" Width="220" HorizontalAlignment="Left"
+                           Rating="{Binding Rating, Mode=TwoWay}"
+                           Style="{StaticResource HighlightedRatingStyle}" />
+        <StackPanel Margin="0,16,0,0" Orientation="Horizontal">
+            <Button x:Name="IncreaseButton" Width="130" Padding="10,6" Content="Increase rating" />
+            <Button x:Name="ResetButton" Margin="10,0,0,0" Width="100" Padding="10,6" Content="Reset" />
+        </StackPanel>
+        <CheckBox x:Name="HighlightCheckBox" Margin="0,16,0,0"
+                  Content="Highlight badge" Click="HighlightCheckBox_Click" />
+        <TextBlock x:Name="StatusText" Margin="0,10,0,0" Text="Highlight is off." />
+        <Button x:Name="SaveButton" Margin="0,18,0,0" Width="120" Padding="10,6"
+                HorizontalAlignment="Left" Content="Save" Command="{Binding SaveCommand}" />
+        <TextBlock x:Name="SavedMessageText" Margin="0,10,0,0" Text="{Binding SavedMessage}" />
+        <Button x:Name="OpenToolWindowButton" Margin="0,18,0,0" Width="170" Padding="10,6"
+                HorizontalAlignment="Left" Background="{StaticResource AppAccentBrush}" Foreground="White"
+                Content="Open tool window" Click="OpenToolWindow_Click" />
+    </StackPanel>
+</Window>

@@ -1,0 +1,28 @@
+<Window x:Class="WpfLearning.Step14.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step14"
+        Title="Step 14 - Value Converter"
+        Width="520"
+        Height="280">
+    <Window.Resources>
+        <local:NumberToTextConverter x:Key="numberToText" />
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical"
+                Margin="36"
+                VerticalAlignment="Center">
+        <TextBlock Text="Move the Slider"
+                   FontSize="20"
+                   Margin="0,0,0,16" />
+        <Slider x:Name="NumberSlider"
+                Minimum="0"
+                Maximum="100"
+                Value="25"
+                TickFrequency="5"
+                IsSnapToTickEnabled="True"
+                Margin="0,0,0,18" />
+        <TextBlock Text="{Binding ElementName=NumberSlider, Path=Value, Mode=OneWay, Converter={StaticResource numberToText}}"
+                   FontSize="24" />
+    </StackPanel>
+</Window>

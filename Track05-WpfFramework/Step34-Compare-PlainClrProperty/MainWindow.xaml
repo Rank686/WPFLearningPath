@@ -1,0 +1,31 @@
+<Window x:Class="WpfLearning.Step34Compare.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step34Compare"
+        Title="Step 34 Compare - INotifyPropertyChanged"
+        Width="540"
+        Height="360">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22"
+                   FontWeight="SemiBold"
+                   Text="Same effect as Step 34, via INPC instead of DP" />
+        <local:RatingBadge x:Name="RatingBadge"
+                           Rating="3"
+                           Margin="0,20,0,18"
+                           Padding="18"
+                           HorizontalAlignment="Left"
+                           Background="LightSkyBlue"
+                           BorderBrush="SteelBlue"
+                           BorderThickness="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Rating: " />
+                <TextBlock FontWeight="Bold"
+                           Text="{Binding ElementName=RatingBadge, Path=Rating}" />
+            </StackPanel>
+        </local:RatingBadge>
+        <Button Padding="14,6"
+                HorizontalAlignment="Left"
+                Content="Increase rating"
+                Click="IncreaseRating_Click" />
+    </StackPanel>
+</Window>

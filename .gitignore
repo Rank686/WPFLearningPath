@@ -8,13 +8,10 @@
 /schema
 /templates
 /tests
-/Track01-Foundation/Step01-XamlShell/obj
-/Track01-Foundation/Step01-XamlShell/bin
-/Track01-Foundation/Step02-StackPanelLayout/obj
-/Track01-Foundation/Step02-StackPanelLayout/bin
-/Track01-Foundation/Step03-XamlClick/obj
-/Track01-Foundation/Step03-XamlClick/bin
-/Track01-Foundation/Step04-CodeEventSubscription/bin
-/Track01-Foundation/Step04-CodeEventSubscription/obj
-/Track01-Foundation/Step05-StaticResource/bin
-/Track01-Foundation/Step05-StaticResource/obj
+
+# Build outputs (all projects)
+**/bin/
+**/obj/
+
+# Lesson metadata
+**/lesson.json

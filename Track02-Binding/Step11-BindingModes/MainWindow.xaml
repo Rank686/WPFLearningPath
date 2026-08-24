@@ -1,0 +1,37 @@
+<Window x:Class="WpfLearning.Step11.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step11"
+        Title="Step 11 - Binding Modes"
+        Width="520"
+        Height="360">
+    <StackPanel Orientation="Vertical" Margin="32">
+        <TextBlock Text="Toggle both boxes, then inspect the source objects"
+                   FontSize="20"
+                   Margin="0,0,0,18" />
+
+        <StackPanel x:Name="OneWayPanel" Margin="0,0,0,12">
+            <StackPanel.DataContext>
+                <local:Profile IsSubscribed="False" />
+            </StackPanel.DataContext>
+            <CheckBox Content="OneWay target"
+                      IsChecked="{Binding IsSubscribed, Mode=OneWay}" />
+        </StackPanel>
+
+        <StackPanel x:Name="TwoWayPanel" Margin="0,0,0,18">
+            <StackPanel.DataContext>
+                <local:Profile IsSubscribed="False" />
+            </StackPanel.DataContext>
+            <CheckBox Content="TwoWay target"
+                      IsChecked="{Binding IsSubscribed, Mode=TwoWay}" />
+        </StackPanel>
+
+        <Button Content="Inspect source values"
+                Width="200"
+                HorizontalAlignment="Left"
+                Click="Inspect_Click" />
+        <TextBlock x:Name="ResultText"
+                   Margin="0,14,0,0"
+                   FontSize="17" />
+    </StackPanel>
+</Window>

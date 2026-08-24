@@ -1,0 +1,49 @@
+<Window x:Class="WpfLearning.Step12.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfLearning.Step12"
+        Title="Step 12 - UpdateSourceTrigger"
+        Width="620"
+        Height="470">
+    <StackPanel x:Name="RootPanel" Margin="28">
+        <StackPanel.DataContext>
+            <local:InputValues />
+        </StackPanel.DataContext>
+
+        <TextBlock Text="When does the target write to the source?"
+                   FontSize="21"
+                   Margin="0,0,0,18" />
+
+        <TextBlock Text="LostFocus" />
+        <TextBox x:Name="LostFocusInput"
+                 Text="{Binding LostFocusValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                 Margin="0,4,0,12" />
+
+        <TextBlock Text="PropertyChanged" />
+        <TextBox x:Name="ImmediateInput"
+                 Text="{Binding ImmediateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,4,0,12" />
+
+        <TextBlock Text="Explicit" />
+        <TextBox x:Name="ExplicitInput"
+                 Text="{Binding ExplicitValue, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                 Margin="0,4,0,16" />
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Inspect source values"
+                    Focusable="False"
+                    Width="180"
+                    Margin="0,0,10,0"
+                    Click="Inspect_Click" />
+            <Button Content="Apply explicit value"
+                    Focusable="False"
+                    Width="180"
+                    Click="ApplyExplicit_Click" />
+        </StackPanel>
+
+        <TextBlock x:Name="ResultText"
+                   TextWrapping="Wrap"
+                   Margin="0,16,0,0"
+                   FontSize="16" />
+    </StackPanel>
+</Window>

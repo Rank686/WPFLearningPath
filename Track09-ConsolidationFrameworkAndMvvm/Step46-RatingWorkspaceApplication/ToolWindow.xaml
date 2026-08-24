@@ -1,0 +1,10 @@
+<Window x:Class="WpfLearning.Step46.ToolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Rating tool window" Height="190" Width="360">
+    <Border Margin="20" Padding="18" BorderThickness="3"
+            BorderBrush="{StaticResource AppAccentBrush}">
+        <TextBlock TextWrapping="Wrap"
+                   Text="This unowned tool window resolves AppAccentBrush from Application.Resources." />
+    </Border>
+</Window>

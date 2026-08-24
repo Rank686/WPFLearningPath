@@ -1,0 +1,16 @@
+<Window x:Class="WpfLearning.Step15.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Step 15 - ItemsSource"
+        Width="420"
+        Height="280">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22"
+                   FontWeight="SemiBold"
+                   Text="ItemsControl repeats source items" />
+        <TextBlock Margin="0,8,0,16"
+                   Text="This is a plain List of names. There is no selection behavior." />
+
+        <ItemsControl ItemsSource="{Binding Names}" />
+    </StackPanel>
+</Window>

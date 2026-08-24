@@ -1,0 +1,9 @@
+<Window x:Class="WpfLearning.Step32.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Step 32 - RoutedCommand" Width="520" Height="340">
+    <StackPanel Margin="24">
+        <TextBlock FontSize="22" FontWeight="SemiBold" Text="CommandBinding separates availability from execution" />
+        <TextBlock Margin="0,8,0,18" Text="The native Save button reflects CanExecute automatically." />
+        <CheckBox x:Name="CanSaveCheckBox" Margin="0,0,0,14" Content="Allow save" Click="CanSave_Click" />
+        <Button x:Name="SaveButton" Width="130" Padding="14,7" HorizontalAlignment="Left" Content="Save" />
+        <TextBlock x:Name="CommandStatus" Margin="0,18,0,0" FontWeight="SemiBold" Text="Nothing saved" />
+    </StackPanel>
+</Window>
